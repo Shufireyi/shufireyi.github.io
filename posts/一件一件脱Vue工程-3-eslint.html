@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一件一件脱Vue工程(3)--eslint | Hello VuePress</title>
+    <meta name="description" content="学习使用 TypeScript 从零实现 axios 库">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.db0203b6.css" as="style"><link rel="preload" href="/assets/js/app.50978706.js" as="script"><link rel="preload" href="/assets/js/2.5b3c0833.js" as="script"><link rel="preload" href="/assets/js/13.90c67a23.js" as="script"><link rel="prefetch" href="/assets/js/10.bb03074b.js"><link rel="prefetch" href="/assets/js/11.3a7a4f21.js"><link rel="prefetch" href="/assets/js/12.26d19f49.js"><link rel="prefetch" href="/assets/js/14.9bf37407.js"><link rel="prefetch" href="/assets/js/3.9448a450.js"><link rel="prefetch" href="/assets/js/4.471d6413.js"><link rel="prefetch" href="/assets/js/5.78ecb2dc.js"><link rel="prefetch" href="/assets/js/6.84d9def0.js"><link rel="prefetch" href="/assets/js/7.26d0573b.js"><link rel="prefetch" href="/assets/js/8.afcf2ac6.js"><link rel="prefetch" href="/assets/js/9.e502559c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.db0203b6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>一级标题</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/posts/一件一件脱Vue工程-1-bable.html" class="sidebar-link">一件一件脱Vue工程(1)--babel</a></li><li><a href="/posts/一件一件脱Vue工程-2-postcss.html" class="sidebar-link">一件一件脱Vue工程(2)--postcss</a></li><li><a href="/posts/一件一件脱Vue工程-3-eslint.html" class="active sidebar-link">一件一件脱Vue工程(3)--eslint</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><blockquote><p>上一篇<a href="/posts/2018/08/03/一件一件脱Vue工程-2-postcss/">一件一件脱 Vue 工程(2)--postcss</a>简单介绍了一下，在 vue-cli 生成的 webpack 工程中，postcss 的默认配置。</p></blockquote> <blockquote><p>今天，接着说一下 eslint</p></blockquote> <h3 id="step1-eslint-是个啥？"><a href="#step1-eslint-是个啥？" class="header-anchor">#</a> step1. eslint 是个啥？</h3> <p>我想大家都知道红宝书吧～ 我看的第一本 js 书籍了，eslint 就是红宝书的作者写的。
+eslint 主要作用是约束代码风格。
+啥？ 风格？ 没错，你少一个空格，多一个回车，eslint 都给你报错！
+在同一个项目组，这还蛮重要的～来约束大家的代码。
+每一条规则都是可配置的，规则之多……没数过来。
+每条规则各自独立，可以开启或关闭，可以将结果设置成警告或者错误。</p> <h3 id="step2-webpack-中的使用"><a href="#step2-webpack-中的使用" class="header-anchor">#</a> step2. webpack 中的使用</h3> <p>使用 <code>vue-cli</code> 初始化项目的时候选择 <code>eslint</code> , 选择 <code>standard</code> 标准。</p> <p>相关的内容如下：
+{% asset_img vue-lint.jpg %}</p> <p><code>package.json</code>中相关 eslint 部分：</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// 一个对 Babel 解析器的包装，可以使用eslint规范代码</span>
+  <span class="token property">&quot;babel-eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.2.1&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.15.0&quot;</span><span class="token punctuation">,</span> <span class="token comment">// eslint 本尊</span>
+  <span class="token property">&quot;eslint-loader&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.7.1&quot;</span><span class="token punctuation">,</span> <span class="token comment">// webpack loader</span>
+  <span class="token comment">// 适用常规风格的 大部分的配置</span>
+  <span class="token property">&quot;eslint-config-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^10.2.1&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 用来检查 import/export 语法及路径</span>
+  <span class="token property">&quot;eslint-plugin-import&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.7.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 针对 nodejs 的一些lint规则</span>
+  <span class="token property">&quot;eslint-plugin-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^5.2.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 针对 promise 的规则</span>
+  <span class="token property">&quot;eslint-plugin-promise&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.4.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 标准的 eslint 规则</span>
+  <span class="token property">&quot;eslint-plugin-standard&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.1&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// vue 官方 eslint 插件</span>
+  <span class="token property">&quot;eslint-plugin-vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 用来格式化 eslint 报错信息</span>
+  <span class="token property">&quot;eslint-friendly-formatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^3.0.0&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>.eslintrc.js</code> 部分</p> <blockquote><p>eslint 的配置部分还是比较繁杂的，这里介绍一下，<code>vue-cli</code> 中的配置</p></blockquote> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 默认情况下，ESLint 会在所有父级目录里寻找配置文件，一直到根目录。如果你想要你所有项目都遵循一个特定的约定时，这将会很有用，但有时候会导致意想不到的结果。为了将 ESLint 限制到一个特定的项目，在你项目根目录下的 package.json 文件或者 .eslintrc.* 文件里的 eslintConfig 字段下设置 &quot;root&quot;: true。ESLint 一旦发现配置文件中有 &quot;root&quot;: true，它就会停止在父级目录中寻找。</span>
+  root<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  parserOptions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 解析选项</span>
+    parser<span class="token punctuation">:</span> <span class="token string">'babel-eslint'</span> <span class="token comment">// 使用自己安装的 babel-eslint</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  env<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 环境配置</span>
+    <span class="token comment">// 使用浏览器环境中的全局变量。</span>
+    browser<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// 继承安装的基础规则</span>
+    <span class="token string">'plugin:vue/essential'</span><span class="token punctuation">,</span>
+    <span class="token string">'standard'</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// 插件配置</span>
+    <span class="token string">'vue'</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  rules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 自定义规则 覆盖安装的规则</span>
+    <span class="token comment">// off 为关</span>
+    <span class="token comment">// warn 为 警告级别错误就触发</span>
+    <span class="token comment">// error 为 错误级别错误才处罚</span>
+    <span class="token string">'generator-star-spacing'</span><span class="token punctuation">:</span> <span class="token string">'off'</span><span class="token punctuation">,</span>
+    <span class="token string">'no-debugger'</span><span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'error'</span> <span class="token punctuation">:</span> <span class="token string">'off'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>.eslintignore</code> 部分</p> <blockquote><p>在这里面的文件会被 eslint 忽略</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>/build/
+/config/
+/dist/
+/*.js
+</code></pre></div><p><em>占坑，接着会理一下<code>vue-cli 2.9.6</code>的 webpack 配置</em></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/posts/一件一件脱Vue工程-2-postcss.html" class="prev">一件一件脱Vue工程(2)--postcss</a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.50978706.js" defer></script><script src="/assets/js/2.5b3c0833.js" defer></script><script src="/assets/js/13.90c67a23.js" defer></script>
+  </body>
+</html>

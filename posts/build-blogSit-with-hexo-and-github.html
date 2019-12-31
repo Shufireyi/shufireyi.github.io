@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用hexo和github搭建自己的博客 | Hello VuePress</title>
+    <meta name="description" content="学习使用 TypeScript 从零实现 axios 库">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.db0203b6.css" as="style"><link rel="preload" href="/assets/js/app.50978706.js" as="script"><link rel="preload" href="/assets/js/2.5b3c0833.js" as="script"><link rel="preload" href="/assets/js/9.e502559c.js" as="script"><link rel="prefetch" href="/assets/js/10.bb03074b.js"><link rel="prefetch" href="/assets/js/11.3a7a4f21.js"><link rel="prefetch" href="/assets/js/12.26d19f49.js"><link rel="prefetch" href="/assets/js/13.90c67a23.js"><link rel="prefetch" href="/assets/js/14.9bf37407.js"><link rel="prefetch" href="/assets/js/3.9448a450.js"><link rel="prefetch" href="/assets/js/4.471d6413.js"><link rel="prefetch" href="/assets/js/5.78ecb2dc.js"><link rel="prefetch" href="/assets/js/6.84d9def0.js"><link rel="prefetch" href="/assets/js/7.26d0573b.js"><link rel="prefetch" href="/assets/js/8.afcf2ac6.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.db0203b6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>一级标题</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/posts/一件一件脱Vue工程-1-bable.html" class="sidebar-link">一件一件脱Vue工程(1)--babel</a></li><li><a href="/posts/一件一件脱Vue工程-2-postcss.html" class="sidebar-link">一件一件脱Vue工程(2)--postcss</a></li><li><a href="/posts/一件一件脱Vue工程-3-eslint.html" class="sidebar-link">一件一件脱Vue工程(3)--eslint</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="第一步：安装hexo"><a href="#第一步：安装hexo" class="header-anchor">#</a> 第一步：安装hexo</h2> <p>node和npm此处不表。</p> <div class="language-bash extra-class"><pre class="language-bash"><code> <span class="token function">npm</span> i -g hexo-cli
+</code></pre></div><p>安装成功后：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>hexo i myblog  // 生成博客文件夹
+<span class="token builtin class-name">cd</span> myblog      // 进入目录,其中官方给出了一个demo
+hexo g         // 生成js、css、html等静态文件
+hexo s         // 启动一个本地服务器，预览页面
+</code></pre></div><p>本地使用浏览器，输入地址<code>localhost:4000</code>,进行预览。
+{%  asset_img demohome.jpg %}</p> <h2 id="第二步：需要注册一个github账号"><a href="#第二步：需要注册一个github账号" class="header-anchor">#</a> 第二步：需要注册一个github账号</h2> <h3 id="_1-打开最大的同性交友网站github-进行注册。"><a href="#_1-打开最大的同性交友网站github-进行注册。" class="header-anchor">#</a> 1.打开最大的同性交友网站<a href="https://github.com/" target="_blank" rel="noopener noreferrer">github<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>,进行注册。</h3> <p>{% asset_img githubHome.jpg %}</p> <h3 id="_2-新建一个仓库，仓库名要以github-io结尾"><a href="#_2-新建一个仓库，仓库名要以github-io结尾" class="header-anchor">#</a> 2.新建一个仓库，仓库名要以<code>github.io</code>结尾</h3> <p>{% asset_img newR.jpg %}
+因为我之前已经新建过同名仓库，此处报同名错误。</p> <h2 id="第三步：将hexo生成的博客内容上传至github"><a href="#第三步：将hexo生成的博客内容上传至github" class="header-anchor">#</a> 第三步：将hexo生成的博客内容上传至github</h2> <h3 id="_1-编辑-config-yml-文件-repo-设置成自己的仓库地址。"><a href="#_1-编辑-config-yml-文件-repo-设置成自己的仓库地址。" class="header-anchor">#</a> 1.编辑 <code>_config.yml</code> 文件, <code>repo</code> 设置成自己的仓库地址。</h3> <p>{% asset_img config.jpg %}</p> <h3 id="_2-开始同步"><a href="#_2-开始同步" class="header-anchor">#</a> 2.开始同步</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save    // 上传需要的插件
+hexo d   // 部署
+</code></pre></div><h3 id="_3-查看效果"><a href="#_3-查看效果" class="header-anchor">#</a> 3.查看效果</h3> <p>{% asset_img result.jpg %}</p> <h2 id="第四步：新建博客"><a href="#第四步：新建博客" class="header-anchor">#</a> 第四步：新建博客</h2> <div class="language-bash extra-class"><pre class="language-bash"><code>hexo n <span class="token string">&quot;blog name&quot;</span> // 在 <span class="token variable"><span class="token variable">`</span>source/_posts/<span class="token variable">`</span></span> 文件夹下会生成对应的*.md文件
+</code></pre></div><p>现在编辑你的博客吧！采用markdown语法～</p> <hr> <p>接着：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>hexo clean // 清除之前生成的文件
+hexo g // 重新生成
+hexo d // 部署到github
+</code></pre></div><p>大功告成！快去看看自己的第一篇博客～
+如果不喜欢这个样式，hexo有很多主题供选择。可以慢慢挑选！</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.50978706.js" defer></script><script src="/assets/js/2.5b3c0833.js" defer></script><script src="/assets/js/9.e502559c.js" defer></script>
+  </body>
+</html>
